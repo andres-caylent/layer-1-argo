@@ -13,7 +13,7 @@ spec:
     path: layer2apps
   destination:
     server: https://kubernetes.default.svc
-    namespace: production
+    namespace: codeargo
   syncPolicy:
     automated:
       selfHeal: true
