@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: layer-1-app
+  namespace: codeargo
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: codeargo
+  source:
+    repoURL: https://github.com/andres-caylent/layer1app.git
+    targetRevision: HEAD
+    path: layer2apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+
